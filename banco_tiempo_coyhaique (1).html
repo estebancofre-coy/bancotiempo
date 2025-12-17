@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Banco de Tiempo Coyhaique - Economía Solidaria en Aysén</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: linear-gradient(135deg, #003D5C 0%, #005670 30%, #006B8F 60%, #05668D 100%);
+  background-attachment: fixed;
+  color: #ffffff;
+  font-family: Georgia, serif;
+  padding: 20px;
+  line-height: 1.8;
+  min-height: 100vh;
+  animation: gradientFlow 12s ease infinite;
+}
+
+@keyframes gradientFlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: linear-gradient(145deg, rgba(0, 61, 92, 0.95) 0%, rgba(5, 102, 141, 0.9) 100%);
+  backdrop-filter: blur(15px);
+  border-radius: 15px;
+  padding: 40px;
+  box-shadow: 0 0 40px rgba(0, 168, 150, 0.4);
+  border: 2px solid rgba(118, 200, 147, 0.3);
+}
+
+.logo-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.logo-box {
+  background: rgba(255, 255, 255, 0.98);
+  padding: 20px 30px;
+  border-radius: 12px;
+  display: inline-block;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.logo-img {
+  max-width: 400px;
+  width: 100%;
+  height: auto;
+}
+
+h1 {
+  color: #b3d9ff;
+  text-align: center;
+  font-size: 2.8em;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 1.3em;
+  color: #76C893;
+  margin-bottom: 40px;
+  font-style: italic;
+}
+
+h2 {
+  color: #76C893;
+  font-size: 1.8em;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid rgba(118, 200, 147, 0.5);
+  text-shadow: 0 0 10px rgba(118, 200, 147, 0.3);
+}
+
+h3 {
+  color: #00A896;
+  font-size: 1.3em;
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+
+p {
+  margin-bottom: 15px;
+  font-size: 1.05em;
+  color: #e8f4f4;
+}
+
+.highlight-box {
+  background: linear-gradient(135deg, rgba(118, 200, 147, 0.2) 0%, rgba(0, 168, 150, 0.2) 100%);
+  border-left: 4px solid #76C893;
+  padding: 25px;
+  margin: 30px 0;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 168, 150, 0.2);
+}
+
+.info-box {
+  background: linear-gradient(135deg, rgba(0, 61, 92, 0.6) 0%, rgba(5, 102, 141, 0.6) 100%);
+  border-left: 4px solid #00A896;
+  padding: 20px;
+  margin: 25px 0;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 168, 150, 0.2);
+}
+
+.icon-large {
+  font-size: 3em;
+  text-align: center;
+  margin: 20px 0;
+}
+
+ul, ol {
+  margin: 15px 0;
+  padding-left: 30px;
+}
+
+li {
+  margin: 10px 0;
+  color: #e8f4f4;
+}
+
+.grid-services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin: 30px 0;
+}
+
+.service-card {
+  background: linear-gradient(135deg, rgba(118, 200, 147, 0.15) 0%, rgba(0, 168, 150, 0.15) 100%);
+  border: 2px solid rgba(118, 200, 147, 0.3);
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(118, 200, 147, 0.4);
+  border-color: #76C893;
+}
+
+.service-icon {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+.service-title {
+  font-weight: bold;
+  color: #76C893;
+  margin-bottom: 8px;
+  font-size: 1.1em;
+}
+
+.service-description {
+  font-size: 0.9em;
+  color: #e8f4f4;
+}
+
+.steps-list {
+  counter-reset: step-counter;
+  list-style: none;
+  padding-left: 0;
+}
+
+.steps-list li {
+  counter-increment: step-counter;
+  position: relative;
+  padding-left: 50px;
+  margin: 20px 0;
+}
+
+.steps-list li::before {
+  content: counter(step-counter);
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: linear-gradient(135deg, #76C893 0%, #00A896 100%);
+  color: #003D5C;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.2em;
+  box-shadow: 0 0 15px rgba(118, 200, 147, 0.5);
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin: 25px 0;
+}
+
+.benefit-item {
+  background: rgba(118, 200, 147, 0.1);
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 3px solid #76C893;
+}
+
+.benefit-icon {
+  font-size: 1.8em;
+  margin-bottom: 8px;
+}
+
+.contact-box {
+  background: linear-gradient(135deg, rgba(0, 168, 150, 0.3) 0%, rgba(118, 200, 147, 0.3) 100%);
+  border: 2px solid #76C893;
+  border-radius: 12px;
+  padding: 30px;
+  margin: 40px 0;
+  text-align: center;
+}
+
+.contact-button {
+  display: inline-block;
+  background: linear-gradient(135deg, #76C893 0%, #00A896 100%);
+  color: #003D5C;
+  padding: 15px 40px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1em;
+  margin: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(118, 200, 147, 0.4);
+}
+
+.contact-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(118, 200, 147, 0.6);
+}
+
+.nav-buttons {
+  text-align: center;
+  margin: 30px 0;
+  padding: 20px;
+  border-top: 2px solid rgba(118, 200, 147, 0.3);
+  border-bottom: 2px solid rgba(118, 200, 147, 0.3);
+}
+
+.nav-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, rgba(118, 200, 147, 0.2) 0%, rgba(0, 168, 150, 0.2) 100%);
+  color: #76C893;
+  border: 2px solid #76C893;
+  padding: 12px 30px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1em;
+  margin: 5px;
+  transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+  background: linear-gradient(135deg, rgba(118, 200, 147, 0.35) 0%, rgba(0, 168, 150, 0.35) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(118, 200, 147, 0.4);
+}
+
+.quote {
+  font-style: italic;
+  font-size: 1.1em;
+  text-align: center;
+  color: #76C893;
+  padding: 20px;
+  margin: 30px 0;
+  border-left: 4px solid #76C893;
+  border-right: 4px solid #76C893;
+}
+
+.emphasis {
+  color: #76C893;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 25px;
+  }
+  
+  h1 {
+    font-size: 2em;
+  }
+  
+  h2 {
+    font-size: 1.5em;
+  }
+  
+  .logo-img {
+    max-width: 280px;
+  }
+  
+  .grid-services,
+  .benefits-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Logo Header -->
+  <div class="logo-header">
+    <div class="logo-box">
+      <img src="./logo_uaysen_ts.png" alt="Universidad de Aysén - Trabajo Social" class="logo-img" onerror="this.style.display='none'">
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <div class="nav-buttons">
+    <a href="portal_principal.html" class="nav-btn">🏠 Portal Principal</a>
+    <a href="index.html" class="nav-btn">🎮 Jugar</a>
+  </div>
+
+  <!-- Title -->
+  <h1>⏰ Banco de Tiempo - Región de Aysén</h1>
+  <p class="subtitle">El primer Banco de Tiempo de la Patagonia chilena</p>
+
+  <div class="icon-large">🤝⏱️💚</div>
+
+  <!-- Introduction -->
+  <div class="highlight-box">
+    <p><strong>El Banco de Tiempo de la Región de Aysén es una infraestructura social comunitaria</strong> que fortalece la resiliencia urbana, la cooperación local y la sostenibilidad social. Creamos un sistema organizado de intercambio de servicios basado en horas, donde <span class="emphasis">todas las horas tienen el mismo valor</span>, independientemente del tipo de servicio, sin mediación monetaria.</p>
+    <p style="margin-top: 15px;"><strong>Utilizamos el tiempo como moneda social complementaria</strong>, conectando municipalidades, universidades, agrupaciones de vecinos, artesanos y más, para crear un sistema que favorece la economía circular y la sostenibilidad de nuestra región.</p>
+  </div>
+
+  <h2>🎯 ¿Qué problema resuelve el Banco de Tiempo?</h2>
+  
+  <p>La Región de Aysén enfrenta desafíos estructurales que requieren soluciones innovadoras más allá del mercado y el Estado tradicionales:</p>
+
+  <div class="info-box">
+    <h3>🌍 Problemáticas que abordamos</h3>
+    <ul>
+      <li><strong>Dependencia exclusiva del mercado y el Estado:</strong> Limitada capacidad de respuesta autónoma ante crisis</li>
+      <li><strong>Desigualdad en el acceso a servicios:</strong> Barreras económicas que excluyen a sectores vulnerables</li>
+      <li><strong>Vulnerabilidad ante crisis:</strong> Económicas, climáticas o sociales que afectan a comunidades aisladas</li>
+      <li><strong>Invisibilización del trabajo de cuidados:</strong> Especialmente relevante en contexto de envejecimiento poblacional</li>
+      <li><strong>Exclusión social:</strong> De mujeres, personas mayores, migrantes y neurodiversidades</li>
+      <li><strong>Consumo no sostenible:</strong> Patrones que generan huella de carbono y dependencia de bienes materiales</li>
+      <li><strong>Debilitamiento de redes comunitarias:</strong> Individualismo creciente vs. tradición solidaria patagónica</li>
+    </ul>
+  </div>
+
+  <h2>💡 Nuestra Solución: Infraestructura Social Comunitaria</h2>
+  
+  <p>El Banco de Tiempo funciona como una <span class="emphasis">infraestructura blanda urbana</span> que democratiza el acceso a servicios y construye redes de apoyo local:</p>
+
+  <div class="highlight-box">
+    <h3>🔧 Cómo funciona la solución</h3>
+    <p><strong>Sistema de intercambio basado en tiempo:</strong></p>
+    <ul>
+      <li>✅ Todas las horas tienen el mismo valor, independientemente del tipo de servicio</li>
+      <li>✅ Las personas ofrecen y reciben servicios sin mediación monetaria</li>
+      <li>✅ El tiempo se utiliza como unidad de intercambio (moneda social complementaria)</li>
+      <li>✅ Plataforma de gestión digital y presencial que registra intercambios, saldos y participación</li>
+    </ul>
+    
+    <p style="margin-top: 15px;"><strong>Red articulada de actores:</strong></p>
+    <ul>
+      <li>🏛️ <strong>Municipalidades:</strong> Apoyo institucional y difusión</li>
+      <li>🎓 <strong>Universidades:</strong> Investigación, formación y sistematización</li>
+      <li>🏘️ <strong>Agrupaciones de vecinos:</strong> Base comunitaria y capilaridad territorial</li>
+      <li>🎨 <strong>Artesanos y emprendedores:</strong> Conocimientos especializados y servicios</li>
+    </ul>
+  </div>
+
+  <h2>🌱 Impacto y Beneficios del Banco de Tiempo</h2>
+  
+  <div class="highlight-box">
+    <h3>📊 Fortalecimiento de la Resiliencia Comunitaria</h3>
+    <ul>
+      <li><strong>Construye redes de apoyo local:</strong> Tejido social activo y organizado</li>
+      <li><strong>Reduce la dependencia exclusiva del mercado y del Estado:</strong> Autonomía comunitaria</li>
+      <li><strong>Mejora la capacidad de respuesta ante crisis:</strong> Económicas, climáticas o sociales</li>
+    </ul>
+  </div>
+
+  <div class="info-box">
+    <h3>⚖️ Democratización y Equidad</h3>
+    <ul>
+      <li><strong>Democratiza el acceso a servicios:</strong> Independientemente de la capacidad económica</li>
+      <li><strong>Valora el trabajo de cuidados:</strong> Clave en ciudades con envejecimiento poblacional</li>
+      <li><strong>Favorece la inclusión:</strong> De mujeres, personas mayores, migrantes y neurodiversidades</li>
+      <li><strong>Reduce desigualdades:</strong> Mecanismos de acceso equitativo para todas las personas</li>
+    </ul>
+  </div>
+
+  <div class="quote">
+    "En el Banco de Tiempo, todas las horas valen lo mismo. Tu conocimiento y tu tiempo son tu capital. Todos somos ricos en algo que los demás necesitan."
+  </div>
+
+  <h2>🔄 ¿Cómo funciona?</h2>
+
+  <ol class="steps-list">
+    <li>
+      <strong>Regístrate como socio/a:</strong><br>
+      Completa un formulario sencillo indicando qué servicios puedes ofrecer y cuáles necesitas.
+    </li>
+    <li>
+      <strong>Acumula créditos de tiempo:</strong><br>
+      Ofrece tus servicios a otros socios. Por cada hora que trabajes, ganas 1 crédito de tiempo.
+    </li>
+    <li>
+      <strong>Usa tus créditos:</strong><br>
+      Solicita servicios de otros socios. Por cada hora que recibas, gastas 1 crédito de tiempo.
+    </li>
+    <li>
+      <strong>Participa en la comunidad:</strong><br>
+      Asiste a encuentros, talleres y actividades comunitarias del Banco de Tiempo.
+    </li>
+  </ol>
+
+  <div class="info-box">
+    <h3>📊 Ejemplo práctico</h3>
+    <p><strong>María</strong> es profesora jubilada. Ofrece clases de apoyo escolar y recibe 3 créditos (3 horas).</p>
+    <p><strong>Juan</strong> es carpintero. María usa sus 3 créditos para que Juan le repare una ventana (3 horas de trabajo).</p>
+    <p><strong>Juan</strong> usa sus nuevos créditos para recibir clases de inglés de otro socio.</p>
+    <p><em>¡El ciclo de intercambio continúa y la comunidad se fortalece!</em></p>
+  </div>
+
+  <h2>♻️ Economía Circular y Acción Climática</h2>
+
+  <p>El Banco de Tiempo promueve <span class="emphasis">patrones de consumo responsable</span> priorizando el intercambio de servicios y conocimientos sobre el consumo de bienes:</p>
+
+  <div class="highlight-box">
+    <h3>🌍 Contribución a los Objetivos de Desarrollo Sostenible (ODS)</h3>
+    <p><strong>Economía de Proximidad y Descarbonización Urbana:</strong></p>
+    <ul>
+      <li>✅ <strong>Reduce emisiones indirectas:</strong> Menos demanda de bienes materiales y transporte asociado</li>
+      <li>✅ <strong>Alarga la vida útil de bienes:</strong> Mediante reparaciones, mantención y cuidado</li>
+      <li>✅ <strong>Economía circular:</strong> Alineada con uso eficiente de recursos</li>
+      <li>✅ <strong>Mitigación climática:</strong> A escala comunitaria, reduciendo huella de carbono</li>
+    </ul>
+    
+    <p style="margin-top: 15px;"><strong>Servicios clave para la economía circular:</strong></p>
+  </div>
+
+  <div class="grid-services">
+    <div class="service-card">
+      <div class="service-icon">🔧</div>
+      <div class="service-title">Reparaciones</div>
+      <div class="service-description">Carpintería, plomería, electricidad, costura - Alarga vida útil de bienes</div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">🛠️</div>
+      <div class="service-title">Mantención</div>
+      <div class="service-description">Cuidado preventivo de equipos, infraestructura y espacios</div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">👶</div>
+      <div class="service-title">Cuidado y Apoyo</div>
+      <div class="service-description">Niños, adultos mayores, personas con dependencia - Trabajo esencial</div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">🤝</div>
+      <div class="service-title">Acompañamiento</div>
+      <div class="service-description">Apoyo social, trámites, movilidad, vida cotidiana</div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">👨‍🏫</div>
+      <div class="service-title">Educación</div>
+      <div class="service-description">Apoyo escolar, idiomas, informática, música, oficios</div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">🎨</div>
+      <div class="service-title">Artesanía Local</div>
+      <div class="service-description">Conocimientos tradicionales, producción local, patrimonio</div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">🏠</div>
+      <div class="service-title">Hogar</div>
+      <div class="service-description">Cocina, limpieza, jardines, organización</div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">💻</div>
+      <div class="service-title">Tecnología</div>
+      <div class="service-description">Reparación de equipos, diseño, alfabetización digital</div>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <p><strong>💡 Nota importante:</strong> Los servicios profesionales regulados (salud, legal) no se intercambian en el Banco de Tiempo, pero sí puedes compartir conocimientos generales en estas áreas (talleres, charlas educativas, etc.).</p>
+  </div>
+
+  <h2>✨ Innovación: ¿Qué hace único al Banco de Tiempo de Aysén?</h2>
+
+  <div class="highlight-box">
+    <h3>🚀 Elementos Innovadores</h3>
+    <ul>
+      <li><strong>Primera iniciativa en la Patagonia chilena:</strong> Pioneros en la región más austral</li>
+      <li><strong>Articulación multinivel:</strong> Conecta estructuras municipales, universitarias, vecinales y productivas</li>
+      <li><strong>Infraestructura blanda urbana:</strong> Sistema de soporte comunitario permanente</li>
+      <li><strong>Moneda social complementaria:</strong> Alternativa al dinero tradicional basada en tiempo</li>
+      <li><strong>Doble modalidad:</strong> Gestión digital y presencial adaptada al contexto regional</li>
+      <li><strong>Enfoque en economía circular:</strong> Prioriza reparación, mantención y cuidados</li>
+      <li><strong>Integración con ODS:</strong> Alineación explícita con objetivos climáticos y de equidad</li>
+    </ul>
+  </div>
+
+  <h2>🎯 Público Objetivo y Tamaño de Mercado</h2>
+
+  <div class="benefits-grid">
+    <div class="benefit-item">
+      <div class="benefit-icon">👥</div>
+      <strong>Población base:</strong> 110.000 habitantes en la Región de Aysén
+    </div>
+
+    <div class="benefit-item">
+      <div class="benefit-icon">🏙️</div>
+      <strong>Coyhaique:</strong> 57.000 habitantes (50% regional) - foco inicial
+    </div>
+
+    <div class="benefit-item">
+      <div class="benefit-icon">👵</div>
+      <strong>Personas mayores:</strong> Alto envejecimiento poblacional, necesitan cuidados
+    </div>
+
+    <div class="benefit-item">
+      <div class="benefit-icon">👩</div>
+      <strong>Mujeres:</strong> Valorización del trabajo de cuidados invisible
+    </div>
+
+    <div class="benefit-item">
+      <div class="benefit-icon">🌍</div>
+      <strong>Migrantes:</strong> Integración social y acceso a redes
+    </div>
+
+    <div class="benefit-item">
+      <div class="benefit-icon">🧠</div>
+      <strong>Neurodiversidades:</strong> Espacios de participación adaptados
+    </div>
+
+    <div class="benefit-item">
+      <div class="benefit-icon">🎓</div>
+      <strong>Estudiantes:</strong> Acceso a servicios sin capacidad económica
+    </div>
+
+    <div class="benefit-item">
+      <div class="benefit-icon">🎨</div>
+      <strong>Artesanos:</strong> Valorización de conocimientos locales
+    </div>
+  </div>
+
+  <h2>🔍 Competencia y Diferenciación</h2>
+
+  <div class="info-box">
+    <h3>📊 Análisis del contexto</h3>
+    <p><strong>Competencia directa:</strong> No existe otro Banco de Tiempo en la Región de Aysén ni en la Patagonia chilena.</p>
+    
+    <p style="margin-top: 15px;"><strong>Iniciativas complementarias (no competencia):</strong></p>
+    <ul>
+      <li>🏛️ <strong>Programas municipales de apoyo social:</strong> Focalizados en población vulnerable específica</li>
+      <li>🤝 <strong>Organizaciones de ayuda mutua:</strong> Funcionan de forma informal sin sistematización</li>
+      <li>💼 <strong>Economía de mercado tradicional:</strong> Basada en dinero, excluye a sectores sin recursos</li>
+    </ul>
+    
+    <p style="margin-top: 15px;"><strong>Nuestra diferenciación:</strong></p>
+    <ul>
+      <li>✅ Sistema organizado y registrado de intercambios</li>
+      <li>✅ Plataforma tecnológica + atención presencial</li>
+      <li>✅ Articulación institucional multinivel</li>
+      <li>✅ Enfoque en sostenibilidad y economía circular</li>
+      <li>✅ Equidad: todas las horas valen lo mismo</li>
+    </ul>
+  </div>
+
+  <h2>📖 Principios de la Economía Social y Solidaria</h2>
+
+  <p>El Banco de Tiempo de Coyhaique se basa en los principios de la <span class="emphasis">Economía Social y Solidaria (ESS)</span>:</p>
+
+  <div class="highlight-box">
+    <h3>🔑 Principios fundamentales</h3>
+    <ul>
+      <li><strong>Solidaridad:</strong> Ayudamos porque somos comunidad, no por beneficio individual</li>
+      <li><strong>Reciprocidad:</strong> Lo que das hoy, lo recibirás mañana de otra forma</li>
+      <li><strong>Equidad:</strong> Todos los trabajos tienen el mismo valor por hora</li>
+      <li><strong>Autogestión:</strong> Las decisiones se toman de forma democrática entre socios</li>
+      <li><strong>Cooperación:</strong> Preferimos colaborar antes que competir</li>
+      <li><strong>Compromiso con el territorio:</strong> Fortalecemos Coyhaique y Aysén</li>
+    </ul>
+  </div>
+
+  <h2>👥 ¿Quién puede participar?</h2>
+
+  <p><strong>¡Todas las personas mayores de 18 años que vivan en Coyhaique!</strong></p>
+
+  <ul>
+    <li>✅ Estudiantes</li>
+    <li>✅ Trabajadores/as</li>
+    <li>✅ Dueñas/os de casa</li>
+    <li>✅ Jubilados/as</li>
+    <li>✅ Emprendedores/as</li>
+    <li>✅ Personas en búsqueda de empleo</li>
+  </ul>
+
+  <div class="info-box">
+    <p><strong>🌟 Requisito único:</strong> Disposición para compartir tu tiempo, habilidades y participar activamente en la construcción de una comunidad más solidaria.</p>
+  </div>
+
+  <h2>🌍 Bancos de Tiempo en el mundo y Chile</h2>
+
+  <p>Los Bancos de Tiempo no son nuevos. Existen en más de 30 países:</p>
+
+  <ul>
+    <li><strong>Reino Unido:</strong> Más de 300 Bancos de Tiempo activos</li>
+    <li><strong>España:</strong> Red muy desarrollada en ciudades como Madrid y Barcelona</li>
+    <li><strong>Estados Unidos:</strong> Pioneros desde 1980</li>
+    <li><strong>Chile:</strong> Experiencias en Santiago, Valparaíso, Concepción</li>
+  </ul>
+
+  <p><span class="emphasis">Coyhaique puede ser pionero en establecer un Banco de Tiempo en la Patagonia chilena</span>, adaptado a las particularidades de nuestra región.</p>
+
+  <h2>📞 ¿Cómo participar?</h2>
+
+  <div class="contact-box">
+    <h3 style="color: #76C893; margin-bottom: 20px;">¡Únete al Banco de Tiempo de la Región de Aysén!</h3>
+    
+    <p style="margin-bottom: 25px;">Si quieres ser parte de esta iniciativa pionera de economía solidaria en la Patagonia chilena, contáctanos:</p>
+    
+    <div style="margin: 20px 0;">
+      <p><strong style="color: #76C893;">👤 Coordinador del proyecto:</strong> Esteban Cofré</p>
+      <p><strong style="color: #76C893;">📧 Email:</strong> contacto@bancotiempoaysen.cl</p>
+      <p><strong style="color: #76C893;">🏛️ Apoyo institucional:</strong> Universidad de Aysén - Trabajo Social</p>
+      <p><strong style="color: #76C893;">📍 Región de Aysén:</strong> Coyhaique y comunas asociadas</p>
+    </div>
+
+    <p style="margin: 20px 0;"><strong>Estamos en búsqueda de:</strong></p>
+    <ul style="text-align: left; display: inline-block; margin: 0 auto;">
+      <li>✨ Socios fundadores para co-diseñar el modelo</li>
+      <li>🤝 Alianzas con municipalidades y organizaciones</li>
+      <li>🎓 Colaboración con instituciones educativas</li>
+      <li>💼 Apoyo de emprendedores y artesanos locales</li>
+    </ul>
+
+    <a href="mailto:contacto@bancotiempoaysen.cl" class="contact-button">✉️ Enviar consulta</a>
+    <a href="#" class="contact-button" onclick="alert('Formulario de registro disponible próximamente. Contáctanos por email para manifestar tu interés.'); return false;">📝 Manifestar interés</a>
+  </div>
+
+  <h2>🤔 Preguntas Frecuentes</h2>
+
+  <div class="info-box">
+    <h3>¿Qué pasa si no tengo créditos cuando inicio?</h3>
+    <p>Al registrarte recibes un <strong>crédito inicial de bienvenida</strong> (1-2 horas) para comenzar. También puedes ofrecer servicios primero para acumular créditos.</p>
+  </div>
+
+  <div class="info-box">
+    <h3>¿Puedo perder mis créditos?</h3>
+    <p>No. Los créditos no caducan y no pierden valor. El tiempo es tiempo, siempre.</p>
+  </div>
+
+  <div class="info-box">
+    <h3>¿Qué pasa si alguien no cumple con un intercambio?</h3>
+    <p>Tenemos un <strong>sistema de mediación comunitaria</strong>. El Banco de Tiempo se basa en la confianza, y los casos problemáticos se resuelven en comunidad.</p>
+  </div>
+
+  <div class="info-box">
+    <h3>¿Hay algún costo por participar?</h3>
+    <p><strong>No.</strong> El Banco de Tiempo es totalmente gratuito. Solo requiere tu tiempo y compromiso.</p>
+  </div>
+
+  <div class="info-box">
+    <h3>¿Cómo se registran los intercambios?</h3>
+    <p>Usamos una plataforma web simple y también formularios en papel para quienes no tengan acceso a internet. La coordinación también puede ser telefónica.</p>
+  </div>
+
+  <h2>💼 Modelo de Sostenibilidad y Comercialización</h2>
+
+  <div class="highlight-box">
+    <h3>💰 ¿Cómo se sostiene el Banco de Tiempo?</h3>
+    <p><strong>El Banco de Tiempo NO es un negocio tradicional con fines de lucro.</strong> Es una infraestructura comunitaria que se sostiene mediante:</p>
+    
+    <ul>
+      <li>🏛️ <strong>Alianzas institucionales:</strong> Apoyo de municipalidades y universidades (espacios, difusión, recursos humanos)</li>
+      <li>💼 <strong>Fondos públicos:</strong> Postulación a fondos de innovación social, fomento productivo, ODS</li>
+      <li>🤝 <strong>Cooperación internacional:</strong> Redes globales de Bancos de Tiempo, apoyo técnico</li>
+      <li>🎓 <strong>Servicios de asesoría:</strong> Consultorías en economía solidaria, formación, sistematización de experiencias</li>
+      <li>👥 <strong>Cuotas solidarias voluntarias:</strong> Aportes de socios según capacidad (no obligatorias)</li>
+      <li>📊 <strong>Investigación y publicaciones:</strong> Generación de conocimiento sobre el modelo</li>
+    </ul>
+  </div>
+
+  <div class="info-box">
+    <h3>📣 Estrategia de Difusión y "Comercialización"</h3>
+    <p><strong>En lugar de "vender", construimos comunidad:</strong></p>
+    <ul>
+      <li>🗣️ <strong>Charlas y talleres:</strong> En juntas de vecinos, universidades, organizaciones sociales</li>
+      <li>📱 <strong>Redes sociales:</strong> Difusión de historias de intercambios exitosos</li>
+      <li>📰 <strong>Medios locales:</strong> Radio, prensa, televisión regional</li>
+      <li>🎪 <strong>Ferias y eventos:</strong> Presencia en espacios comunitarios</li>
+      <li>🤝 <strong>Testimonios y referidos:</strong> Crecimiento orgánico por recomendación</li>
+      <li>🏫 <strong>Integración curricular:</strong> Formación en establecimientos educacionales</li>
+    </ul>
+  </div>
+
+  <h2>🌱 Próximos pasos y desarrollo del proyecto</h2>
+
+  <p>El Banco de Tiempo de la Región de Aysén se encuentra en fase de <span class="emphasis">formación y articulación institucional</span>. Queremos construir esto juntos/as:</p>
+
+  <ol class="steps-list">
+    <li>
+      <strong>Fase de Diseño e Incubación:</strong><br>
+      Definición de modelo operativo, alianzas institucionales, desarrollo de plataforma digital.
+    </li>
+    <li>
+      <strong>Fase de Convocatoria:</strong><br>
+      Captación de socios fundadores en Coyhaique, difusión en territorios, formación de equipos.
+    </li>
+    <li>
+      <strong>Fase de Lanzamiento:</strong><br>
+      Primera asamblea constitutiva, registro de servicios, inicio de intercambios piloto.
+    </li>
+    <li>
+      <strong>Fase de Consolidación:</strong><br>
+      Sistematización de experiencias, evaluación de impacto, ajustes al modelo.
+    </li>
+    <li>
+      <strong>Fase de Expansión Regional:</strong><br>
+      Replicación en otras comunas de Aysén (Puerto Aysén, Puerto Cisnes, Cochrane, Chile Chico).
+    </li>
+  </ol>
+
+  <div class="highlight-box">
+    <p style="font-size: 1.1em; text-align: center;">
+      <strong>🌟 Tu participación es fundamental para hacer realidad el primer Banco de Tiempo de la Patagonia chilena. ¡Construyamos juntos/as una economía más solidaria, resiliente y sostenible! 🌟</strong>
+    </p>
+  </div>
+
+  <!-- Final Navigation -->
+  <div class="nav-buttons">
+    <a href="portal_principal.html" class="nav-btn">🏠 Volver al Portal</a>
+    <a href="index.html" class="nav-btn">🎮 Jugar Pesos Australes</a>
+  </div>
+
+  <!-- Footer -->
+  <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid rgba(118, 200, 147, 0.3); color: #76C893; font-size: 0.9em;">
+    <p><strong>Banco de Tiempo - Región de Aysén</strong></p>
+    <p>Primera iniciativa de economía solidaria con moneda social en la Patagonia chilena</p>
+    <p>Infraestructura social comunitaria para la resiliencia urbana y la sostenibilidad</p>
+    <p style="margin-top: 15px;">🤝 Universidad de Aysén - Trabajo Social 🤝</p>
+    <p style="margin-top: 10px; font-size: 0.85em; color: #e8f4f4;">
+      "Todas las horas valen lo mismo. Todas las personas tienen valor.<br>
+      El tiempo de cada uno/a construye la comunidad de todos/as."
+    </p>
+    <p style="margin-top: 15px; font-size: 0.8em; color: #76C893;">
+      🌍 Contribuyendo a los ODS: Acción Climática | Reducción de Desigualdades | Ciudades Sostenibles ♻️
+    </p>
+  </div>
+</div>
+
+</body>
+</html>
